@@ -37,7 +37,7 @@ const paymentRoutes = require('./routes/payment');
 
 // 👉 Use Routes
 app.use('/api/users', userRoutes);         // User routes
-app.use('/api/products', productRoutes);   // Product routes
+app.use('/api/product', productRoutes);   // Product routes
 app.use('/api/orders', orderRoutes);       // Order routes
 app.use('/api/cart', cartRoutes);          // Cart routes
 app.use('/api/wishlist', wishlistRoutes);  // Wishlist routes
