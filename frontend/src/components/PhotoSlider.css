@@ -1,0 +1,112 @@
+/* 🌟 Fade-Based Fullscreen Photo Slider */
+
+.photo-slider-container {
+  width: 100%;
+  max-height: 600px;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.photo-slider {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.scroll-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 🌟 Caption Text */
+.caption {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 4px #000;
+}
+
+/* 🌟 Navigation Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.arrow.left {
+  left: 20px;
+}
+
+.arrow.right {
+  right: 20px;
+}
+
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+.photo-slider {
+  height: 600px; /* Or 100vh if you want fullscreen */
+}
+@media (max-width: 768px) {
+  .photo-slider-container {
+    padding: 20px 0;
+  }
+
+  .photo-slider {
+    height: 400px;
+  }
+
+  .caption {
+    font-size: 1.2rem;
+    left: 20px;
+    bottom: 20px;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+    padding: 4px 8px;
+  }
+}

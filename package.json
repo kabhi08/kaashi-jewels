@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "bootstrap": "^5.3.6",
+    "react-bootstrap": "^2.10.10",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^7.6.2",
+    "twilio": "^5.7.1"
+  }
+}

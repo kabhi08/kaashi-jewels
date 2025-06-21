@@ -1,0 +1,30 @@
+
+.category-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.2rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: -57px;
+  margin-left: -590px;
+}
+.category-item {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.category-item:hover {
+  color: #f2a900;
+}
+
+/* Reusable classes for theme */
+.light-text {
+  color: #111;
+}
+
+.dark-text {
+  color: #f1f1f1;
+}
