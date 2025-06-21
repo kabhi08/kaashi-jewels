@@ -29,7 +29,7 @@ mongoose.connect(MONGO_URI)
 
 // 👉 Import Routes
 const userRoutes = require('./routes/users');
-const productRoutes = require('./routes/products');
+const productRoutes = require('./routes/productsRoutes');
 const orderRoutes = require('./routes/orders');
 const cartRoutes = require('./routes/cart');
 const wishlistRoutes = require('./routes/wishlist');
