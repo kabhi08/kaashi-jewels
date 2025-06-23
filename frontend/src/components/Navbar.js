@@ -1,8 +1,10 @@
+// src/components/NavigationBar.js
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
+
 import {
   Navbar,
   Container,
@@ -10,11 +12,11 @@ import {
   Button,
   Form,
   FormControl,
-  Badge
+  Badge,
 } from 'react-bootstrap';
-import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-import { FaUserCircle } from 'react-icons/fa';
-import './Navbar.css'; // Import your custom styles for the navbar
+
+import { FaHeart, FaShoppingCart, FaUserCircle } from 'react-icons/fa';
+import './Navbar.css';
 
 const NavigationBar = () => {
   const navigate = useNavigate();
@@ -64,7 +66,7 @@ const NavigationBar = () => {
           backdropFilter: 'blur(10px)',
           backgroundColor: isDark ? 'rgba(20, 20, 20, 0.9)' : 'rgba(255, 255, 255, 0.8)',
           borderBottom: isDark ? '1px solid #333' : '1px solid #ccc',
-          color: isDark ? '#fff' : '#000'
+          color: isDark ? '#fff' : '#000',
         }}
       >
         <Container fluid>
@@ -86,7 +88,7 @@ const NavigationBar = () => {
 
           <Navbar.Toggle aria-controls="main-navbar" />
           <Navbar.Collapse id="main-navbar">
-            {/* Search Bar */}
+            {/* 🔍 Search Bar */}
             <Form className="d-flex mx-auto w-50" onSubmit={handleSearch}>
               <FormControl
                 type="search"
@@ -98,7 +100,7 @@ const NavigationBar = () => {
                 style={{
                   backgroundColor: isDark ? '#222' : '#fff',
                   color: isDark ? '#fff' : '#000',
-                  borderColor: isDark ? '#444' : '#ccc'
+                  borderColor: isDark ? '#444' : '#ccc',
                 }}
               />
               <Button variant={isDark ? 'outline-light' : 'outline-dark'} type="submit">
@@ -106,18 +108,19 @@ const NavigationBar = () => {
               </Button>
             </Form>
 
-            {/* Icons & Actions */}
+            {/* 🧭 Icons */}
             <Nav className="ms-auto align-items-center gap-3">
-              {/* Theme Toggle */}
+
+              {/* 🌓 Theme Toggle */}
               <Button
                 variant={isDark ? 'outline-light' : 'outline-dark'}
                 onClick={toggleTheme}
                 size="sm"
               >
-                {isDark ? '☀️ ' : '🌙 '}
+                {isDark ? '☀️' : '🌙'}
               </Button>
 
-              {/* Wishlist */}
+              {/* 💖 Wishlist */}
               <Nav.Link
                 as="button"
                 onClick={() => token ? navigate('/wishlist') : handleAuthRequired()}
@@ -126,7 +129,7 @@ const NavigationBar = () => {
                 <FaHeart className="me-1" />
               </Nav.Link>
 
-              {/* Cart */}
+              {/* 🛒 Cart */}
               <Nav.Link
                 as="button"
                 onClick={() => token ? navigate('/cart') : handleAuthRequired()}
@@ -145,30 +148,30 @@ const NavigationBar = () => {
                 )}
               </Nav.Link>
 
-              {/* Auth Buttons */}
+              {/* 👤 Profile (only if logged in) */}
+              {token && (
+                <Nav.Link
+                  as={Link}
+                  to="/profile"
+                  className={`btn btn-link ${isDark ? 'text-light' : 'text-dark'} p-0 border-0`}
+                >
+                  <FaUserCircle size={22} title="Profile" />
+                </Nav.Link>
+              )}
+
+              {/* 🔐 Auth Buttons */}
               {token ? (
                 <Button variant="danger" size="sm" onClick={handleLogout}>
                   Logout
                 </Button>
               ) : (
                 <>
-                  <LoginModal
-                   show={showLoginModal}
-                   onHide={() => setShowLoginModal(false)}
-                   onSwitchToRegister={() => {
-                   setShowLoginModal(false);
-                   setTimeout(() => setShowRegisterModal(true), 300); // 🔧 Fix
-                    }}
-                    />
-
-                   <RegisterModal
-                   show={showRegisterModal}
-                   onHide={() => setShowRegisterModal(false)}
-                   onSwitchToLogin={() => {
-                   setShowRegisterModal(false);
-                   setTimeout(() => setShowLoginModal(true), 300); // 🔧 Fix
-               }}
-              />
+                  <Button size="sm" onClick={() => setShowLoginModal(true)}>
+                    Login
+                  </Button>
+                  <Button size="sm" variant="secondary" onClick={() => setShowRegisterModal(true)}>
+                    Register
+                  </Button>
                 </>
               )}
             </Nav>
@@ -176,28 +179,24 @@ const NavigationBar = () => {
         </Container>
       </Navbar>
 
+      {/* Modals */}
       <LoginModal
-  show={showLoginModal}
-  onHide={() => setShowLoginModal(false)}
-  onSwitchToRegister={() => {
-    setShowLoginModal(false);
-    setTimeout(() => setShowRegisterModal(true), 350); // Ensure timing is after animation ends
-  }}
-/>
+        show={showLoginModal}
+        onHide={() => setShowLoginModal(false)}
+        onSwitchToRegister={() => {
+          setShowLoginModal(false);
+          setTimeout(() => setShowRegisterModal(true), 350);
+        }}
+      />
 
-     <RegisterModal
-  show={showRegisterModal}
-  onHide={() => setShowRegisterModal(false)}
-  onSwitchToLogin={() => {
-    setShowRegisterModal(false);
-    setTimeout(() => setShowLoginModal(true), 350);
-  }}
-/>
-<div className="navbar-right">
-  <Link to="/profile" className="profile-icon">
-    <FaUserCircle size={24} title="Profile" />
-  </Link>
-</div>
+      <RegisterModal
+        show={showRegisterModal}
+        onHide={() => setShowRegisterModal(false)}
+        onSwitchToLogin={() => {
+          setShowRegisterModal(false);
+          setTimeout(() => setShowLoginModal(true), 350);
+        }}
+      />
     </>
   );
 };
