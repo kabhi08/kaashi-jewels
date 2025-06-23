@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/product');
+const Product = require('C:\project\my_first_mern_project\backend\models\product.js'); 
 
 // ➕ Add New Product
 router.post('/', async (req, res) => {
