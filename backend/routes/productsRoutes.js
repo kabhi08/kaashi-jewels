@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../backend/models/product.js'); 
+const Product = require('./models/product.js'); 
 
 // ➕ Add New Product
 router.post('/', async (req, res) => {
