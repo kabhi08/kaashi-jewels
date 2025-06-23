@@ -1,0 +1,18 @@
+.profile-page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.profile-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.dark .profile-card {
+  background: #1e1e1e;
+  color: white;
+  border: 1px solid #444;
+}

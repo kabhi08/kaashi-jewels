@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
 import BuyPage from './pages/BuyPage';
+import ProfilePage from './pages/ProfilePage';
 
 // ✨ Jewelry Collection Pages
 import NecklaceSet from './collection/NecklaceSet';
@@ -45,6 +46,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
              <Route path="/product/:id" element={<ProductDetailPage />} />
               <Route path="/checkout" element={<BuyPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
               {/* 🔗 Collection Routes */}
              <Route path="/collections/NecklaceSet" element={<NecklaceSet />} />
              <Route path="/collections/Earrings" element={<Earrings />} />

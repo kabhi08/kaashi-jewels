@@ -1,0 +1,71 @@
+/* Align profile icon to right side */
+.navbar-right {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  z-index: 2;
+}
+
+.profile-icon {
+  color: #333;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+  color: #fb641b;
+}
+
+.dark .profile-icon {
+  color: #f1f1f1;
+}
+
+.dark .profile-icon:hover {
+  color: #ff9f00;
+}
+
+/* Adjust cart badge position */
+.navbar .nav-link .badge {
+  font-size: 0.65rem;
+  padding: 0.25em 0.4em;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  z-index: 10;
+}
+
+/* Search input styles */
+.navbar form input[type="search"] {
+  border-radius: 4px;
+}
+
+.navbar form input[type="search"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fb641b50;
+}
+
+/* Theme toggle button */
+.navbar .btn {
+  border-radius: 20px;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  transition: background 0.3s ease;
+}
+
+.navbar .btn:hover {
+  background-color: #fb641b;
+  color: white;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  .navbar-right {
+    position: static;
+    margin-left: auto;
+  }
+
+  .profile-icon {
+    margin-left: 1rem;
+  }
+}

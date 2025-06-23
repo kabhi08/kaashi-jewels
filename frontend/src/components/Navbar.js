@@ -13,6 +13,9 @@ import {
   Badge
 } from 'react-bootstrap';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa';
+import './Navbar.css'; // Import your custom styles for the navbar
 
 const NavigationBar = () => {
   const navigate = useNavigate();
@@ -191,6 +194,11 @@ const NavigationBar = () => {
     setTimeout(() => setShowLoginModal(true), 350);
   }}
 />
+<div className="navbar-right">
+  <Link to="/profile" className="profile-icon">
+    <FaUserCircle size={24} title="Profile" />
+  </Link>
+</div>
     </>
   );
 };
