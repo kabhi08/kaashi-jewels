@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('./models/product.js'); 
+const product = require('../models/Product'); // ✅ Corrected relative path
 
 // ➕ Add New Product
 router.post('/', async (req, res) => {
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 // 📦 Get All Products
 router.get('/', async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await product.find();
     res.json(products);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 // 🔍 Get Single Product by ID
 router.get('/:id', async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await product.findById(req.params.id);
     if (!product) return res.status(404).json({ error: 'Product not found' });
     res.json(product);
   } catch (err) {
@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
 router.get('/category/:cat', async (req, res) => {
   try {
     const category = req.params.cat.toLowerCase();
-    const products = await Product.find({ category });
+    const products = await product.find({ category });
     if (products.length === 0) return res.status(404).json({ message: 'No products in this category' });
     res.json(products);
   } catch (err) {
