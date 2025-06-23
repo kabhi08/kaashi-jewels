@@ -187,7 +187,7 @@ const NavigationBar = () => {
           setShowLoginModal(false);
           setTimeout(() => setShowRegisterModal(true), 350);
         }}
-      />
+        />
 
       <RegisterModal
         show={showRegisterModal}
