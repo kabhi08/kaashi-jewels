@@ -13,7 +13,6 @@ import {
   Badge
 } from 'react-bootstrap';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import './Navbar.css'; // Import your custom styles for the navbar
 
