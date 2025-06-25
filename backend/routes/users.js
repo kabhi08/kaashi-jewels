@@ -60,7 +60,7 @@ router.post('/login', async (req, res) => {
 // 👤 Get Logged-in User (from JWT token)
 router.get('/me', authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req.userId).select('-password');
+    const user = await User.findById(req.user._id).select('-password'); // ✅ safer
     if (!user) return res.status(404).json({ error: 'User not found' });
     res.json(user);
   } catch (err) {

@@ -58,17 +58,31 @@
   color: white;
 }
 
-/* Responsive fixes */
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  .navbar-right {
-    position: static;
-    margin-left: auto;
+  .navbar-brand {
+    font-size: 1rem !important;
   }
 
-  .profile-icon {
-    margin-left: 1rem;
+  .navbar-toggler {
+    border-color: #ccc;
+  }
+
+  .offcanvas-body {
+    padding: 1rem;
+  }
+
+  .offcanvas .nav-link {
+    font-size: 1rem;
+    padding: 8px 0;
+  }
+
+  .btn {
+    font-size: 0.9rem;
   }
 }
+
 /* src/components/Navbar.css */
 
 .profile-icon {

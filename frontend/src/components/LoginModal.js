@@ -81,7 +81,7 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
-        <Modal.Title>🔐 Login to Your Account</Modal.Title>
+       <Modal.Title className="w-100 text-center fs-5">🔐 Login to Your Account</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {error && <Alert variant="danger">{error}</Alert>}

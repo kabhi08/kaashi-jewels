@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Alert } from 'react-bootstrap';
 import axios from 'axios';
-
+import './RegisterModal.css'; // Ensure you have a CSS file for styling
 const RegisterModal = ({ show, onHide, onSwitchToLogin }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -31,7 +31,7 @@ const RegisterModal = ({ show, onHide, onSwitchToLogin }) => {
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
-        <Modal.Title>📝 Register</Modal.Title>
+        <Modal.Title className="w-100 text-center">📝 Register</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {error && <Alert variant="danger">{error}</Alert>}
