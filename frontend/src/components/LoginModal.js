@@ -2,6 +2,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Modal, Button, Form, Alert } from 'react-bootstrap';
+import { FaGoogle, FaFacebook } from 'react-icons/fa';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider
+} from 'firebase/auth';
+import '../firebase'; // Make sure firebase is initialized in firebase.js
 
 const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
   const [email, setEmail] = useState('');
@@ -11,12 +19,14 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
   const [showReset, setShowReset] = useState(false);
   const [error, setError] = useState(null);
 
+  const auth = getAuth();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
     try {
       const res = await axios.post('http://localhost:5000/api/users/login', { email, password });
-      localStorage.setItem('token', res.data.token); // or session storage
+      localStorage.setItem('token', res.data.token);
       onHide();
       window.location.reload();
     } catch (err) {
@@ -38,6 +48,36 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const token = await user.getIdToken();
+      localStorage.setItem('token', token);
+      onHide();
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+      setError('Google login failed');
+    }
+  };
+
+  const handleFacebookLogin = async () => {
+    const provider = new FacebookAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const token = await user.getIdToken();
+      localStorage.setItem('token', token);
+      onHide();
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+      setError('Facebook login failed');
+    }
+  };
+
   return (
     <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
@@ -46,7 +86,6 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
       <Modal.Body>
         {error && <Alert variant="danger">{error}</Alert>}
 
-        {/* Step: Email/Password Login */}
         {!showReset && (
           <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3">
@@ -96,12 +135,23 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
         )}
 
         {!showReset && (
-          <div className="text-center mt-4">
-            Don’t have an account?{' '}
-            <Button variant="link" className="p-0" onClick={onSwitchToRegister}>
-              Register here
-            </Button>
-          </div>
+          <>
+            <hr />
+            <div className="d-flex gap-2">
+              <Button variant="danger" className="w-100" onClick={handleGoogleLogin}>
+                <FaGoogle /> Google
+              </Button>
+              <Button variant="primary" className="w-100" onClick={handleFacebookLogin}>
+                <FaFacebook /> Facebook
+              </Button>
+            </div>
+            <div className="text-center mt-3">
+              Don’t have an account?{' '}
+              <Button variant="link" className="p-0" onClick={onSwitchToRegister}>
+                Register here
+              </Button>
+            </div>
+          </>
         )}
       </Modal.Body>
     </Modal>

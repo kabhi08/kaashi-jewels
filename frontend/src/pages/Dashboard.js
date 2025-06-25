@@ -1,11 +1,22 @@
-import React from 'react';
+// src/pages/Dashboard.js
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-import '../App.css'; // For fade-in effect
+import '../App.css'; // Your animation styles
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect immediately to home page on mount
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/'); // Redirect to homepage after login
+    } else {
+      navigate('/login'); // If no token, go to login
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -14,7 +25,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* Advanced animated background */}
+      {/* Optional background effect */}
       <div className="animated-bg" />
       <div className="particle" />
       <div className="particle" />
@@ -25,9 +36,9 @@ const Dashboard = () => {
           <Row className="justify-content-center">
             <Col md={8}>
               <div className="dashboard-box text-white text-center p-5 shadow-lg rounded">
-                <h1 className="mb-3">Welcome to Your Dashboard</h1>
+                <h1 className="mb-3">Welcome Back!</h1>
                 <p className="lead mb-4">
-                  You have successfully accessed a protected route.
+                  Redirecting you to Kaashi Jewels homepage...
                 </p>
                 <Button
                   variant="outline-light"

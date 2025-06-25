@@ -1,5 +1,3 @@
-// src/components/PhotoSlider.js
-
 import React, { useState, useEffect } from 'react';
 import './PhotoSlider.css';
 
@@ -18,7 +16,7 @@ const PhotoSlider = () => {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [images.length]);
+  }, []); // ✅ Only runs once on mount — images is static
 
   const goPrev = () => {
     setIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
