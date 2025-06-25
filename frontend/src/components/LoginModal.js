@@ -77,7 +77,6 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
           </Form>
         )}
 
-        {/* Step: Forgot Password */}
         {showReset && (
           <Form onSubmit={handleForgotSubmit}>
             <Form.Group className="mb-3">
