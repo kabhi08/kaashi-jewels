@@ -12,19 +12,18 @@ const categories = [
   { name: 'Bracelet', path: '/collections/Bracelet' },
 ];
 
-const CategoryMenu = () => {
+const CategoryMenu = ({ isMobile = false }) => {
   const { theme } = useContext(ThemeContext);
   const isDark = theme === 'dark';
   const navigate = useNavigate();
 
   return (
-    <div className={`category-menu ${isDark ? 'dark-text' : 'light-text'}`}>
+    <div className={`category-menu ${isDark ? 'dark-text' : 'light-text'} ${isMobile ? 'mobile-style' : ''}`}>
       {categories.map((item, idx) => (
         <span
           key={idx}
           className="category-item"
           onClick={() => navigate(item.path)}
-          style={{ cursor: 'pointer' }}
         >
           {item.name}
         </span>

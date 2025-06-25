@@ -8,6 +8,7 @@ import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
 import BuyPage from './pages/BuyPage';
 import ProfilePage from './pages/ProfilePage';
+import HomeMobile from './pages/HomeMobile';
 
 // ✨ Jewelry Collection Pages
 import NecklaceSet from './collection/NecklaceSet';
@@ -47,6 +48,7 @@ const App = () => {
              <Route path="/product/:id" element={<ProductDetailPage />} />
               <Route path="/checkout" element={<BuyPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/mobile-home" element={<HomeMobile />} />
               {/* 🔗 Collection Routes */}
              <Route path="/collections/NecklaceSet" element={<NecklaceSet />} />
              <Route path="/collections/Earrings" element={<Earrings />} />
