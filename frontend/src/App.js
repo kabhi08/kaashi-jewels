@@ -10,7 +10,6 @@ import BuyPage from './pages/BuyPage';
 import ProfilePage from './pages/ProfilePage';
 import HomeMobile from './pages/HomeMobile';
 
-// ✨ Jewelry Collection Pages
 import NecklaceSet from './collection/NecklaceSet';
 import Earrings from './collection/Earrings';
 import Bangles from './collection/Bangles';
