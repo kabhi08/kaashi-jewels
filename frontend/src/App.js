@@ -8,7 +8,7 @@ import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
 import BuyPage from './pages/BuyPage';
 import ProfilePage from './pages/ProfilePage';
-import HomeMobile from './pages/HomeMobile';
+
 import AdminDashboard from './pages/AdminDashboard';
 
 import NecklaceSet from './collection/NecklaceSet';
@@ -73,7 +73,7 @@ const App = () => {
               <Route path="/product/:id" element={<ProductDetailPage />} />
               <Route path="/checkout" element={<BuyPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/mobile-home" element={<HomeMobile />} />
+            
 
               {/* ✅ Protected Admin Route */}
               <Route
