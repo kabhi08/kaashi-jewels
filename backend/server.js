@@ -2,7 +2,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+const dotenv = require('dotenv');
+const path = require('path');
+
+dotenv.config();
 
 // 👉 App Initialization
 const app = express();
@@ -14,18 +17,22 @@ const MONGO_URI = process.env.MONGO_URI;
 // 👉 Middleware Setup (IMPORTANT ORDER)
 app.use(cors());
 
-// Razorpay webhook route must use raw body before `express.json()`
+// Webhook route must use raw body for Razorpay
 app.use('/api/payment/webhook', express.raw({ type: 'application/json' }));
 
-app.use(express.json()); // Now enable normal JSON parsing for all other routes
+// Enable normal JSON parsing for all other routes
+app.use(express.json());
 
 // 👉 MongoDB Connection
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ MongoDB connected successfully'))
-  .catch(err => {
-    console.error('❌ MongoDB connection error:', err.message);
-    process.exit(1);
-  });
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('✅ MongoDB connected successfully'))
+.catch(err => {
+  console.error('❌ MongoDB connection error:', err.message);
+  process.exit(1);
+});
 
 // 👉 Import Routes
 const userRoutes = require('./routes/users');
@@ -34,14 +41,24 @@ const orderRoutes = require('./routes/orders');
 const cartRoutes = require('./routes/cart');
 const wishlistRoutes = require('./routes/wishlist');
 const paymentRoutes = require('./routes/payment');
-
+const adminRoutes = require('./routes/admin');
 // 👉 Use Routes
-app.use('/api/users', userRoutes);         // User routes
-app.use('/api/product', productRoutes);   // Product routes
-app.use('/api/orders', orderRoutes);       // Order routes
-app.use('/api/cart', cartRoutes);          // Cart routes
-app.use('/api/wishlist', wishlistRoutes);  // Wishlist routes
-app.use('/api/payment', paymentRoutes);    // Payment + webhook handler
+app.use('/api/users', userRoutes);
+app.use('/api/product', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/wishlist', wishlistRoutes);
+app.use('/api/payment', paymentRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/users', require('./routes/users'));
+// 👉 Production Mode: Serve static files (optional for deployment)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'));
+  });
+}
 
 // 👉 Root Route
 app.get('/', (req, res) => {

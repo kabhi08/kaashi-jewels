@@ -48,7 +48,7 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
     }
   };
 
-  const handleGoogleLogin = async () => {
+   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
@@ -58,10 +58,11 @@ const LoginModal = ({ show, onHide, onSwitchToRegister }) => {
       onHide();
       window.location.reload();
     } catch (err) {
-      console.error(err);
-      setError('Google login failed');
+      console.error('🔥 Google Sign-In Error:', err.code, err.message);
+      setError('Google login failed: ' + err.message);
     }
   };
+
 
   const handleFacebookLogin = async () => {
     const provider = new FacebookAuthProvider();
